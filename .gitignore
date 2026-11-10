@@ -218,3 +218,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Données brutes : retéléchargeables par les scripts
+data/raw/*
+!data/raw/.gitkeep
+
+# Environnement local
+.venv/
