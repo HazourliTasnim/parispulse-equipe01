@@ -225,3 +225,7 @@ data/raw/*
 
 # Environnement local
 .venv/
+
+# Fichiers système macOS
+.DS_Store
+__MACOSX/

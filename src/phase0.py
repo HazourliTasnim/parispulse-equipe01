@@ -8,7 +8,7 @@ Usage :
   python src/phase0.py extraire --compteur ID      # via l'API
   python src/phase0.py extraire --fichier brut.csv --compteur ID  # export manuel
 
-Dépendances : pandas, pyarrow, matplotlib
+Dépendances : pandas, matplotlib, tabulate
 """
 import argparse
 import datetime as dt
@@ -170,7 +170,7 @@ def plus_longue_suite_zeros(serie):
 def profil(serie):
     s = serie.dropna(subset=["count"]).copy()
     s["heure"] = s["ts_local"].dt.hour
-    s["type_jour"] = np.where(s["ts_local"].dt.dayofweek < 5, "semaine", "week-end")
+    s["type_jour"] = np.where(s["ts_local"].dt.day_of_week < 5, "semaine", "week-end")
     return s.pivot_table(index="heure", columns="type_jour", values="count", aggfunc="mean")
 
 
@@ -197,10 +197,15 @@ def figures(serie, p, compteur):
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     fig, ax = plt.subplots(1, 2, figsize=(13, 4))
-    complete = serie.set_index("ts_local")["count"]
-    semaines = complete.resample("W-SUN").apply(lambda x: x.notna().mean())
-    fin = semaines[semaines > 0.99].index.max() if (semaines > 0.99).any() else complete.index.max()
-    complete[fin - pd.Timedelta(days=7):fin].plot(ax=ax[0], title="Une semaine complète")
+    s = serie.set_index("ts_local")["count"]
+    dernier = s.index.max()
+    # Lundi 0 h de la dernière semaine (partielle) -> on trace la semaine pleine d'avant
+    fin = dernier.normalize() - pd.Timedelta(days=dernier.day_of_week)
+    if dernier.hour == 23 and dernier.day_of_week == 6:
+        fin = fin + pd.Timedelta(days=7)   # la dernière semaine est déjà complète
+    debut = fin - pd.Timedelta(days=7)
+    s[debut:fin - pd.Timedelta(hours=1)].plot(
+        ax=ax[0], title=f"Semaine du {debut:%d/%m/%Y} (lundi → dimanche)")
     p.plot(ax=ax[1], marker="o", title="Profil horaire moyen (heure de Paris)")
     ax[1].set_xticks(range(0, 24, 2))
     fig.tight_layout()
@@ -257,10 +262,11 @@ def extraire(compteur, fichier=None):
     serie, meta, alertes, stats = normaliser(brut, compteur, provenance)
     p, ecarts = controles(serie, alertes)
     today = dt.date.today().isoformat()
-    f_counts = OUT / f"counts_v0_{today}.parquet"
-    f_meta = OUT / f"meta_v0_{today}.parquet"
-    serie.to_parquet(f_counts, index=False)
-    pd.DataFrame([meta]).to_parquet(f_meta, index=False)
+    f_counts = OUT / f"counts_v0_{today}.csv"
+    f_meta = OUT / f"meta_v0_{today}.csv"
+    # CSV : virgule, UTF-8, dates ISO 8601 avec décalage, case vide = valeur absente
+    serie.to_csv(f_counts, index=False, encoding="utf-8")
+    pd.DataFrame([meta]).to_csv(f_meta, index=False, encoding="utf-8")
     f_png = figures(serie, p, compteur)
     fiche = ecrire_fiche(serie, meta, alertes, stats, p, ecarts,
                          [chemin_brut, f_counts, f_meta, f_png])

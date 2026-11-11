@@ -1,0 +1,2 @@
+counter_id,site_id,counter_name,site_name,lat,lon,installation_date,first_obs_utc,last_obs_utc,coverage,status,status_reason
+100057445-104057445,100057445,Totem 73 boulevard de Sébastopol S-N,Totem 73 boulevard de Sébastopol,48.86377,2.35096,2020-02-10,2025-10-11 16:00:00+00:00,2026-11-10 22:00:00+00:00,0.9885,retenu,compteur de démarrage (phase 0)
