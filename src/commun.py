@@ -10,6 +10,16 @@ RAW = ROOT / "data/raw"
 PROCESSED = ROOT / "data/processed"
 JOURNEES_ABSENTES_RESEAU = pd.to_datetime(
     ["2026-08-22", "2026-09-23", "2026-10-04", "2026-10-25"]).date
+# Trous communs à tout le réseau (vérifiés le 11/11/2026), en UTC, bornes incluses
+TROUS_RESEAU_UTC = [
+    ("2025-10-26 00:00", "2025-10-26 00:00"),   # 2 h heure d'été, heure doublée absente
+    ("2026-07-01 22:00", "2026-07-01 23:00"),   # 02/07/2026 0 h–2 h (Paris)
+    ("2026-07-05 22:00", "2026-07-05 23:00"),   # 06/07/2026 0 h–2 h (Paris)
+    ("2026-08-21 22:00", "2026-08-22 21:00"),
+    ("2026-09-22 22:00", "2026-09-23 21:00"),
+    ("2026-10-03 22:00", "2026-10-04 21:00"),
+    ("2026-10-24 22:00", "2026-10-25 22:00"),   # 25 h (passage à l'heure d'hiver)
+]
 
 # Ordre des colonnes de la table finale (section 2 du contrat)
 COLONNES = [

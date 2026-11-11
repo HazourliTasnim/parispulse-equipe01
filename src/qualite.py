@@ -1,4 +1,4 @@
-"""Indicateurs de qualité et statut des compteurs. Responsable : Nihed (axe Qualité)."""
+"""Indicateurs de qualité et statut des compteurs. Responsable : R4 (qualité et horodatage) ; statut_compteurs : R1 (réseau et sélection)."""
 
 
 def ajouter_indicateurs(df):

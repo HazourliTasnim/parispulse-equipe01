@@ -1,4 +1,4 @@
-"""Jointures et contrôles finaux. Responsables : les deux."""
+"""Jointures et contrôles finaux. Responsables : toute l'équipe."""
 from commun import CLE, COLONNES
 
 

@@ -1,4 +1,4 @@
-"""Téléchargement des sources brutes. Responsable : binôme (axe Sources et contexte).
+"""Téléchargement des sources brutes. Responsable : R3 (extraction extensible).
 
 Chaque fichier brut est écrit dans data/raw/ avec sa date d'extraction, et jamais modifié.
 """

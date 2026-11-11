@@ -1,4 +1,4 @@
-"""Estimation des valeurs manquantes dans count_filled. Responsable : Nihed (axe Qualité).
+"""Estimation des valeurs manquantes dans count_filled. Responsable : R4 (qualité et horodatage).
 
 `count` n'est jamais modifié ; chaque estimation est marquée is_imputed / imputation_method.
 """

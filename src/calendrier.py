@@ -1,4 +1,4 @@
-"""Colonnes de temps et calendrier. Responsable : binôme (axe Sources et contexte)."""
+"""Colonnes de temps et calendrier. Responsable : R2 (enrichissement)."""
 
 
 def colonnes_temps(df):

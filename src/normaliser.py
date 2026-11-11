@@ -1,4 +1,4 @@
-"""Mise au format commun. Responsable : binôme (axe Sources et contexte)."""
+"""Mise au format commun. Responsable : R3 (extraction extensible)."""
 
 
 def normaliser(brut):

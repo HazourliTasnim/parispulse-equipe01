@@ -17,3 +17,12 @@
 | 10/11 | Zéros suspects laissés à zéro et signalés par `is_zero_suspect` | Le sujet interdit de les remplacer automatiquement ; traitement décidé par une expérience | Équipe |
 | 10/11 | `count` n'est jamais modifié ; l'erreur se calcule sur les heures réellement mesurées | Le sujet demande l'erreur « sur les heures réellement mesurées » | Équipe |
 | 10/11 | Zéro isolé suspect sur Sébastopol S-N le 07/04/2026 à 16 h ; 71 zéros en heure chargée à Ménilmontant NO-SE | Cas d'étude pour l'approfondissement | Nihed |
+| 11/11 | L'équipe compte 4 membres : rôles R1 (réseau et sélection), R2 (enrichissement), R3 (extraction extensible), R4 (qualité et horodatage) | Répartition proposée par l'énoncé | Équipe |
+| 11/11 | Trous communs au réseau confirmés : 26/10/2025 2 h (heure doublée), 02/07 et 06/07/2026 0 h–2 h, 4 journées | `verifier_contrat.py` sur les 113 compteurs | Nihed |
+| 11/11 | 0 doublon sur les 113 compteurs ; sens opposés sur les 31 sites bidirectionnels | `verifier_contrat.py` | Nihed |
+| 11/11 | Couverture mesurée depuis la première mesure + ancienneté séparée | Les 5 compteurs « sous 90 % » sont récents, pas en panne | Nihed |
+| 11/11 | 106 av. Denfert-Rochereau NE-SO candidat `rejete` | Zéro partout dans le flux et l'archive | Nihed |
+| 11/11 | Archive 2025 : même convention horaire que le flux | Valeurs identiques sans décalage sur 57 compteurs | Nihed |
+| 11/11 | Archive utilisée au niveau compteur seulement si elle concorde avec le flux ; le flux fait foi | 48 des 56 compteurs bidirectionnels diffèrent (un sens quasi vide dans l'archive) ; 49 des 50 unidirectionnels concordent | Nihed |
+| 11/11 | Météo prévue : Open-Meteo `previous_day1` ; observée : Météo-France Montsouris ; unités °C, mm, m/s | Bulletin disponible avant la date de prévision ; vérifié à 100 % sur la période du flux | Nihed |
+| 11/11 | Règle des zéros suspects à calibrer avant la v1 | 1 123 h sur 58 compteurs, dont des fermetures probablement réelles | Nihed |
